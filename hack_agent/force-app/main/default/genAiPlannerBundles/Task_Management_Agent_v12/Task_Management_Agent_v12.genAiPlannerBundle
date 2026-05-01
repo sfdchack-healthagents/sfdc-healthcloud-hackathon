@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Automate common business tasks and assist users in their flow of work. Agentforce Employee Agent can search knowledge articles and other data sources. Customize it further to meet your employees&apos; business needs.</description>
+    <localTopicLinks>
+        <genAiPluginName>Expense_logger_16jak000001pYiD</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Physician_Briefing_16jak000001pYiD</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Post_Visit_Actions_16jak000001pYiD</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>topic_selector_16jak000001pYiD</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Expense_logger_16jak000001pYiD</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Use this subagent to log any expense for the visits.</description>
+        <developerName>Expense_logger_16jak000001pYiD</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002yW3w</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002yW3w</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Log_Employee_Expense_179ak000002yW3w</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>QueryRecords_179ak000002yW3w</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Log_Employee_Expense_179ak000002yW3w</fullName>
+            <description>Creates work order if needed and logs expense, Log expense when user gives an expense related information with an account name for example log today&apos;s expense of visiting manipal hospital here Manipal is the account name.</description>
+            <developerName>Log_Employee_Expense_179ak000002yW3w</developerName>
+            <invocationTarget>EmployeeExpenseLogger</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Log_Employee_Expense</localDeveloperName>
+            <masterLabel>Log Employee Expense</masterLabel>
+            <progressIndicatorMessage>Creating Expense record</progressIndicatorMessage>
+            <source>Log_Employee_Expense</source>
+        </localActions>
+        <localActions>
+            <fullName>QueryRecords_179ak000002yW3w</fullName>
+            <description>Finds and retrieves Salesforce CRM records based on user input and specific conditions, such as field values. This action automatically identifies the correct records and object type. e.g. &apos;Find all open opportunities created in the last 5 days sorted by created date.&apos;</description>
+            <developerName>QueryRecords_179ak000002yW3w</developerName>
+            <invocationTarget>queryRecords</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>QueryRecords</localDeveloperName>
+            <masterLabel>Query Records</masterLabel>
+            <source>EmployeeCopilot__QueryRecords</source>
+        </localActions>
+        <localDeveloperName>Expense_logger</localDeveloperName>
+        <masterLabel>Expense logger</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>topic_selector_16jak000001pYiD</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and determine the appropriate topic based on user input</description>
+        <developerName>topic_selector_16jak000001pYiD</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002yW3v</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002yW3v</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>PersonalizeContext_179ak000002yW3v</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>PersonalizeContext_179ak000002yW3v</fullName>
+            <description>Improve agent decisioning with real-time access to summarized, personalization data.</description>
+            <developerName>PersonalizeContext_179ak000002yW3v</developerName>
+            <invocationTarget>createContextPersonalization</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>PersonalizeContext</localDeveloperName>
+            <masterLabel>Personalization: Get Context</masterLabel>
+            <progressIndicatorMessage>Creating a personalized context for you...</progressIndicatorMessage>
+            <source>Personalization__PersonalizeContext</source>
+        </localActions>
+        <localDeveloperName>topic_selector</localDeveloperName>
+        <masterLabel>Topic Selector</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>Post_Visit_Actions_16jak000001pYiD</fullName>
+        <canEscalate>false</canEscalate>
+        <description>WHEN TO USE: Call this action when you complete a visit/meeting with a healthcare provider, clinic, hospital, or doctor. This orchestrator intelligently handles THREE OPERATIONS in sequence: (1) CREATE VISIT LOG - Documents what was discussed, attendees, outcomes, and any referral opportunities. (2) CREATE FOLLOW-UP TASK (optional) - If user mentions action items like &quot;send brochure&quot;, &quot;call them back&quot;, &quot;schedule follow-up&quot; - create a task assigned to sales team with 3-day default deadline. (3) SEND EMAIL (optional) - If user asks to notify the doctor/provider, sends professional healthcare industry email with brochure attachment. BUSINESS VALUE: Automatically creates complete post-visit documentation, ensures no follow-up actions are forgotten, and establishes communication trail. USE EXAMPLES: &quot;Log my visit to Apollo Hospitals - discussed oncology program with Dr. Mehta, and send them our brochure&quot; → Creates visit log + task + email. &quot;Document my Manipal meeting about cardiology partnership&quot; → Creates visit log only (no task/email needed). REQUIRED INPUTS: Clinic/hospital name + what was discussed. OPTIONAL INPUTS: Doctor name, referral notes, expense amount, follow-up actions. OUTPUTS: Visit log ID (tracked in CRM), task ID (if created), email confirmation, and success message.</description>
+        <developerName>Post_Visit_Actions_16jak000001pYiD</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002yW3u</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002yW3u</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Post_Visit_Documentation_TaskCreation_179ak000002yW3u</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Post_Visit_Documentation_TaskCreation_179ak000002yW3u</fullName>
+            <description>FULL POST-VISIT WORKFLOW: Call this when documenting a clinic/hospital visit with visit log creation as the PRIMARY operation. THIS ACTION handles: (1) CREATE VISIT LOG (REQUIRED) - Documents what was discussed, attendees, outcomes, referral opportunities. (2) CREATE FOLLOW-UP TASK (optional) - If user mentions action items (&quot;call them&quot;, &quot;follow up&quot;). WHEN TO USE: &quot;Log my visit to Apollo Hospitals with Dr. Mehta - discussed oncology program and future partnership opportunities. Also create a follow-up task to call them on Tuesday.&quot; REQUIRED INPUTS: Clinic/hospital name + visit summary (what was discussed). OPTIONAL INPUTS: Doctor name, referral notes, expense tracking, follow-up actions. OUTPUTS: Visit log ID (CRM record), task ID (if created), success message.</description>
+            <developerName>Post_Visit_Documentation_TaskCreation_179ak000002yW3u</developerName>
+            <invocationTarget>PostVisitLogOrchestrator</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Post_Visit_Documentation_TaskCreation</localDeveloperName>
+            <masterLabel>Post Visit Documentation, Task Creation</masterLabel>
+            <progressIndicatorMessage>Procesing</progressIndicatorMessage>
+            <source>Post_Visit_Documentation_TaskCreation</source>
+        </localActions>
+        <localDeveloperName>Post_Visit_Actions</localDeveloperName>
+        <masterLabel>Post Visit Actions</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>Physician_Briefing_16jak000001pYiD</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Physician Briefing is an Agentforce topic designed to support sales representatives by providing a concise, context‑aware briefing about a physician prior to, or during, a sales meeting. The topic consolidates relevant commercial, engagement, and relationship data so the sales rep can walk into the meeting well‑prepared and aligned to the physician’s interests and history.</description>
+        <developerName>Physician_Briefing_16jak000001pYiD</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002yW3t</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002yW3t</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Physician_Referral_History_Briefing_179ak000002yW3t</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Find_Healthcare_Provider_179ak000002yW3t</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Find_Healthcare_Provider_179ak000002yW3t</fullName>
+            <description>Searches for HealthcareProvider records by name or email</description>
+            <developerName>Find_Healthcare_Provider_179ak000002yW3t</developerName>
+            <invocationTarget>ContactFinder</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Find_Healthcare_Provider</localDeveloperName>
+            <masterLabel>Find Healthcare Provider</masterLabel>
+            <progressIndicatorMessage>Finding healthcare provider</progressIndicatorMessage>
+            <source>Find_Healthcare_Provider</source>
+        </localActions>
+        <localActions>
+            <fullName>Physician_Referral_History_Briefing_179ak000002yW3t</fullName>
+            <description>Physician Briefing is an Agentforce topic designed to support sales representatives by providing a concise, context‑aware briefing about a physician prior to, or during, a sales meeting. The topic consolidates relevant commercial, engagement, and relationship data so the sales rep can walk into the meeting well‑prepared and aligned to the physician&apos;s interests and history.
+Prepare effectively for physician meetings
+Personalize conversations
+Maximize meeting value by focusing on relevant products, past interactions, and open opportunities</description>
+            <developerName>Physician_Referral_History_Briefing_179ak000002yW3t</developerName>
+            <invocationTarget>Physician_Referral_History_Briefing</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Physician_Referral_History_Briefing</localDeveloperName>
+            <masterLabel>Physician Referral History Briefing</masterLabel>
+            <progressIndicatorMessage>Gathering info</progressIndicatorMessage>
+            <source>Physician_Referral_History_Briefing</source>
+        </localActions>
+        <localDeveloperName>Physician_Briefing</localDeveloperName>
+        <masterLabel>Physician Briefing</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Task Management Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>

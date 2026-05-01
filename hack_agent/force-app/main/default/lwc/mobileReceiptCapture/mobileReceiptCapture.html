@@ -1,0 +1,411 @@
+<template>
+    <div class="mobile-receipt-container">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" style={progressStyle}></div>
+            </div>
+            <div class="step-indicator">
+                <span class="step-text">Step {currentStep} of 4</span>
+                <h2 class="step-title">{stepTitle}</h2>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="loading-overlay">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Step 1: Account Selection -->
+        <template if:true={isStep1}>
+            <div class="step-content">
+                <div class="step-header">
+                    <lightning-icon icon-name="standard:account" size="large" class="step-icon"></lightning-icon>
+                    <p class="step-description">Choose the account for this expense receipt</p>
+                </div>
+                
+                <div class="input-section">
+                    <lightning-record-picker
+                        label="Account"
+                        placeholder="Search Accounts..."
+                        object-api-name="Account"
+                        onchange={handleAccountSelection}
+                        required>
+                    </lightning-record-picker>
+                </div>
+
+                <template if:true={selectedAccountName}>
+                    <div class="selection-badge">
+                        <lightning-icon icon-name="utility:check" size="x-small"></lightning-icon>
+                        <span>Selected: {selectedAccountName}</span>
+                    </div>
+                </template>
+
+                <div class="button-section">
+                    <lightning-button
+                        variant="brand"
+                        label="Next"
+                        icon-name="utility:forward"
+                        icon-position="right"
+                        onclick={nextToWorkOrders}
+                        disabled={isLoading}
+                        class="full-width-button">
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+
+        <!-- Step 2: Work Order Selection -->
+        <template if:true={isStep2}>
+            <div class="step-content">
+                <div class="step-header">
+                    <lightning-icon icon-name="standard:work_order" size="large" class="step-icon"></lightning-icon>
+                    <p class="step-description">Choose an active work order or create a new one</p>
+                </div>
+
+                <template if:true={hasWorkOrders}>
+                    <div class="list-container">
+                        <template for:each={workOrders} for:item="wo">
+                            <div key={wo.id} 
+                                 class={wo.isSelected}
+                                 data-id={wo.id}
+                                 onclick={selectWorkOrder}>
+                                <div class="list-item">
+                                    <div class="item-header">
+                                        <span class="item-number">{wo.number}</span>
+                                        <span class="item-status">{wo.status}</span>
+                                    </div>
+                                    <div class="item-subject">{wo.subject}</div>
+                                    <template if:true={wo.isSelected}>
+                                        <lightning-icon 
+                                            icon-name="utility:check" 
+                                            size="small"
+                                            class="selected-icon">
+                                        </lightning-icon>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:false={hasWorkOrders}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:info" size="medium"></lightning-icon>
+                        <p>No active work orders found for this account</p>
+                    </div>
+                </template>
+
+                <div class="button-section">
+                    <lightning-button
+                        variant="neutral"
+                        label="Create New Work Order"
+                        icon-name="utility:add"
+                        onclick={openNewWorkOrderModal}
+                        class="full-width-button secondary-button">
+                    </lightning-button>
+                    
+                    <template if:true={canProceedStep2}>
+                        <lightning-button
+                            variant="brand"
+                            label="Next"
+                            icon-name="utility:forward"
+                            icon-position="right"
+                            onclick={nextToExpenses}
+                            disabled={isLoading}
+                            class="full-width-button">
+                        </lightning-button>
+                    </template>
+                    
+                    <lightning-button
+                        variant="neutral"
+                        label="Back"
+                        icon-name="utility:back"
+                        onclick={previousStep}
+                        class="full-width-button secondary-button">
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+
+        <!-- Step 3: Expense Selection -->
+        <template if:true={isStep3}>
+            <div class="step-content">
+                <div class="step-header">
+                    <lightning-icon icon-name="standard:expense" size="large" class="step-icon"></lightning-icon>
+                    <p class="step-description">Choose an expense or create a new one</p>
+                </div>
+
+                <template if:true={hasExpenses}>
+                    <div class="list-container">
+                        <template for:each={expenses} for:item="exp">
+                            <div key={exp.id}
+                                 class={exp.isSelected}
+                                 data-id={exp.id}
+                                 onclick={selectExpense}>
+                                <div class="list-item">
+                                    <div class="item-header">
+                                        <span class="item-number">{exp.name}</span>
+                                        <template if:true={exp.amount}>
+                                            <span class="item-amount">${exp.amount}</span>
+                                        </template>
+                                    </div>
+                                    <template if:true={exp.description}>
+                                        <div class="item-description">{exp.description}</div>
+                                    </template>
+                                    <template if:true={exp.transactionDate}>
+                                        <div class="item-date">
+                                            <lightning-formatted-date-time value={exp.transactionDate}></lightning-formatted-date-time>
+                                        </div>
+                                    </template>
+                                    <template if:true={exp.isSelected}>
+                                        <lightning-icon 
+                                            icon-name="utility:check" 
+                                            size="small"
+                                            class="selected-icon">
+                                        </lightning-icon>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:false={hasExpenses}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:info" size="medium"></lightning-icon>
+                        <p>No expenses found for this work order</p>
+                    </div>
+                </template>
+
+                <div class="button-section">
+                    <lightning-button
+                        variant="neutral"
+                        label="Create New Expense"
+                        icon-name="utility:add"
+                        onclick={openNewExpenseModal}
+                        class="full-width-button secondary-button">
+                    </lightning-button>
+                    
+                    <template if:true={canProceedStep3}>
+                        <lightning-button
+                            variant="brand"
+                            label="Next"
+                            icon-name="utility:forward"
+                            icon-position="right"
+                            onclick={nextToReceipt}
+                            disabled={isLoading}
+                            class="full-width-button">
+                        </lightning-button>
+                    </template>
+                    
+                    <lightning-button
+                        variant="neutral"
+                        label="Back"
+                        icon-name="utility:back"
+                        onclick={previousStep}
+                        class="full-width-button secondary-button">
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+
+        <!-- Step 4: Capture Receipt -->
+        <template if:true={isStep4}>
+            <div class="step-content">
+                <div class="step-header">
+                    <lightning-icon icon-name="standard:photo" size="large" class="step-icon"></lightning-icon>
+                    <p class="step-description">Take a photo or select from gallery</p>
+                </div>
+
+                <div class="summary-section">
+                    <div class="summary-item">
+                        <span class="summary-label">Account:</span>
+                        <span class="summary-value">{selectedAccountName}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Work Order:</span>
+                        <span class="summary-value">{selectedWorkOrderNumber}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Expense:</span>
+                        <span class="summary-value">{selectedExpenseName}</span>
+                    </div>
+                </div>
+
+                <template if:false={hasCapturedImage}>
+                    <div class="capture-section">
+                        <div class="capture-buttons">
+                            <lightning-button
+                                variant="brand"
+                                label="Take Photo"
+                                icon-name="utility:photo"
+                                onclick={handleCameraCapture}
+                                class="capture-button">
+                            </lightning-button>
+                            <input 
+                                type="file" 
+                                accept="image/*" 
+                                capture="environment"
+                                data-source="camera"
+                                onchange={handleFileChange}
+                                class="hidden-input" />
+                            
+                            <lightning-button
+                                variant="neutral"
+                                label="Choose from Gallery"
+                                icon-name="utility:image"
+                                onclick={handleGallerySelect}
+                                class="capture-button">
+                            </lightning-button>
+                            <input 
+                                type="file" 
+                                accept="image/*"
+                                data-source="gallery"
+                                onchange={handleFileChange}
+                                class="hidden-input" />
+                        </div>
+                    </div>
+                </template>
+
+                <template if:true={hasCapturedImage}>
+                    <div class="preview-section">
+                        <div class="preview-label">Receipt Preview</div>
+                        <div class="image-preview">
+                            <img src={capturedImage} alt="Receipt preview" />
+                        </div>
+                        <lightning-button
+                            variant="neutral"
+                            label="Retake"
+                            icon-name="utility:refresh"
+                            onclick={retakePhoto}
+                            class="full-width-button secondary-button">
+                        </lightning-button>
+                    </div>
+                </template>
+
+                <div class="button-section">
+                    <template if:true={hasCapturedImage}>
+                        <lightning-button
+                            variant="success"
+                            label="Upload Receipt"
+                            icon-name="utility:upload"
+                            onclick={uploadReceipt}
+                            disabled={isLoading}
+                            class="full-width-button upload-button">
+                        </lightning-button>
+                    </template>
+                    
+                    <lightning-button
+                        variant="neutral"
+                        label="Back"
+                        icon-name="utility:back"
+                        onclick={previousStep}
+                        class="full-width-button secondary-button">
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+
+        <!-- New Work Order Modal -->
+        <template if:true={showNewWorkOrderModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-modal__title slds-hyphenate">Create New Work Order</h2>
+                        <lightning-button-icon 
+                            icon-name="utility:close" 
+                            alternative-text="Close" 
+                            onclick={closeNewWorkOrderModal}
+                            class="slds-modal__close">
+                        </lightning-button-icon>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-input
+                            label="Subject"
+                            value={newWorkOrderSubject}
+                            onchange={handleNewWorkOrderSubject}
+                            required>
+                        </lightning-input>
+                        <lightning-textarea
+                            label="Description"
+                            value={newWorkOrderDescription}
+                            onchange={handleNewWorkOrderDescription}>
+                        </lightning-textarea>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button 
+                            variant="neutral" 
+                            label="Cancel" 
+                            onclick={closeNewWorkOrderModal}>
+                        </lightning-button>
+                        <lightning-button 
+                            variant="brand" 
+                            label="Create" 
+                            onclick={createNewWorkOrder}
+                            disabled={isLoading}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- New Expense Modal -->
+        <template if:true={showNewExpenseModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-modal__title slds-hyphenate">Create New Expense</h2>
+                        <lightning-button-icon 
+                            icon-name="utility:close" 
+                            alternative-text="Close" 
+                            onclick={closeNewExpenseModal}
+                            class="slds-modal__close">
+                        </lightning-button-icon>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-input
+                            type="number"
+                            label="Amount"
+                            value={newExpenseAmount}
+                            onchange={handleNewExpenseAmount}
+                            min="0"
+                            step="0.01"
+                            formatter="currency"
+                            required>
+                        </lightning-input>
+                        <lightning-input
+                            type="date"
+                            label="Transaction Date"
+                            value={newExpenseTransactionDate}
+                            onchange={handleNewExpenseDate}
+                            required>
+                        </lightning-input>
+                        <lightning-textarea
+                            label="Description"
+                            value={newExpenseDescription}
+                            onchange={handleNewExpenseDescription}>
+                        </lightning-textarea>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button 
+                            variant="neutral" 
+                            label="Cancel" 
+                            onclick={closeNewExpenseModal}>
+                        </lightning-button>
+                        <lightning-button 
+                            variant="brand" 
+                            label="Create" 
+                            onclick={createNewExpense}
+                            disabled={isLoading}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+</template>

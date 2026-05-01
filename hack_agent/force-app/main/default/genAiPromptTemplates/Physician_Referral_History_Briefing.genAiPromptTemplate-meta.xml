@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>wQor3ykTg7SZOmiPGoB1NKUkKxLxnttxraiJRurzgEc=_1</activeVersionIdentifier>
+    <developerName>Physician_Referral_History_Briefing</developerName>
+    <masterLabel>Physician Referral History Briefing</masterLabel>
+    <overridable>false</overridable>
+    <relatedEntity>HealthcareProvider</relatedEntity>
+    <templateVersions>
+        <content>You are a pre-meeting briefing assistant for a healthcare sales representative. 
+Using the referral data below, provide a concise pre-meeting summary.
+
+**Physician Info:**
+- Name: {!$Input:HealthcareProvider.Name}
+- Contact: {!$Input:HealthcareProvider.Practitioner.Name}
+- Account: {!$Input:HealthcareProvider.Account.Name}
+
+ {!$Apex:PhysicianReferralSummaryAction.referralSummary} 
+
+**Instructions:**
+1. Provide a 2-3 sentence executive summary of this physician&apos;s referral relationship
+2. Highlight referral volume trends (increasing, decreasing, stable)
+3. Note top facilities referred to and most common referral types
+4. Flag any concerns: declined referrals, engagement gaps, or volume drops
+5. Provide 2-3 actionable talking points for the upcoming meeting
+6. Keep it concise and professional
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://HealthcareProvider</definition>
+            <referenceName>Input:HealthcareProvider</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>apex://PhysicianReferralSummaryAction</definition>
+            <description>Returns a formatted summary of all referrals made by a Healthcare Provider</description>
+            <label>Get Physician Referral Summary</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>providerId</parameterName>
+                <valueExpression>{!$Input:HealthcareProvider.Id}</valueExpression>
+            </parameters>
+            <referenceName>Apex:PhysicianReferralSummaryAction</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>wQor3ykTg7SZOmiPGoB1NKUkKxLxnttxraiJRurzgEc=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a pre-meeting briefing assistant for a healthcare sales representative. 
+Using the referral data below, provide a concise pre-meeting summary.
+
+**Physician Info:**
+- Name: {!$Input:HealthcareProvider.Name}
+- Contact: {!$Input:HealthcareProvider.Practitioner.Name}
+- Account: {!$Input:HealthcareProvider.Account.Name}
+
+ {!$Apex:PhysicianReferralSummaryAction.referralSummary} 
+
+**Instructions:**
+1. Provide a 2-3 sentence executive summary of this physician&apos;s referral relationship
+2. Highlight referral volume trends (increasing, decreasing, stable)
+3. Note top facilities referred to and most common referral types
+4. Flag any concerns: declined referrals, engagement gaps, or volume drops
+5. Provide 2-3 actionable talking points for the upcoming meeting
+6. Keep it concise and professional
+{!$Input:HealthcareProvider.Id}
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://HealthcareProvider</definition>
+            <referenceName>Input:HealthcareProvider</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>apex://PhysicianReferralSummaryAction</definition>
+            <description>Returns a formatted summary of all referrals made by a Healthcare Provider</description>
+            <label>Get Physician Referral Summary</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>providerId</parameterName>
+                <valueExpression>{!$Input:HealthcareProvider.Id}</valueExpression>
+            </parameters>
+            <referenceName>Apex:PhysicianReferralSummaryAction</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>wQor3ykTg7SZOmiPGoB1NKUkKxLxnttxraiJRurzgEc=_2</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__recordSummary</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

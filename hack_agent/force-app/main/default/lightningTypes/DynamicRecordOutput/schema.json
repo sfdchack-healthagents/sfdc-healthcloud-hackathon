@@ -1,0 +1,5 @@
+{
+  "title" : "DynamicRecordOutput",
+  "description" : "Lightning Type for displaying dynamic record information with configurable fields",
+  "lightning:type" : "@apexClassType/c__AgentSFX_RecordOutputWrapper"
+}

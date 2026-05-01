@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates an expense record from service agent input</description>
+    <developerName>Create_Expense_from_Service_Agent</developerName>
+    <invocationTarget>ServiceAgentExpenseCreator</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Create_Expense_from_Service_Agent</localDeveloperName>
+    <masterLabel>Create Expense from Service Agent</masterLabel>
+    <progressIndicatorMessage>logging Expense</progressIndicatorMessage>
+</GenAiFunction>

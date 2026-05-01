@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates work order if needed and logs expense</description>
+    <developerName>Log_Employee_Expense</developerName>
+    <invocationTarget>EmployeeExpenseLogger</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Log_Employee_Expense</localDeveloperName>
+    <masterLabel>Log Employee Expense</masterLabel>
+    <progressIndicatorMessage>Creating Expense record</progressIndicatorMessage>
+</GenAiFunction>

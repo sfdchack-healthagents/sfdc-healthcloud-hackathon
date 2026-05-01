@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>FULL POST-VISIT WORKFLOW: Call this when documenting a clinic/hospital visit with visit log creation as the PRIMARY operation. THIS ACTION handles: (1) CREATE VISIT LOG (REQUIRED) - Documents what was discussed, attendees, outcomes, referral opportunities. (2) CREATE FOLLOW-UP TASK (optional) - If user mentions action items (&quot;call them&quot;, &quot;follow up&quot;). WHEN TO USE: &quot;Log my visit to Apollo Hospitals with Dr. Mehta - discussed oncology program and future partnership opportunities. Also create a follow-up task to call them on Tuesday.&quot; REQUIRED INPUTS: Clinic/hospital name + visit summary (what was discussed). OPTIONAL INPUTS: Doctor name, referral notes, expense tracking, follow-up actions. OUTPUTS: Visit log ID (CRM record), task ID (if created), success message.</description>
+    <developerName>Post_Visit_Documentation_Full_Workflow</developerName>
+    <invocationTarget>PostVisitLogOrchestrator</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Post_Visit_Documentation_Full_Workflow</localDeveloperName>
+    <masterLabel>Post Visit Documentation &amp; Full Workflow</masterLabel>
+    <progressIndicatorMessage>Processing</progressIndicatorMessage>
+</GenAiFunction>

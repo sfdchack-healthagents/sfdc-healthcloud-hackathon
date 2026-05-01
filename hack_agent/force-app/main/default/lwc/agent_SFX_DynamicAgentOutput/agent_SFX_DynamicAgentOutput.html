@@ -1,0 +1,22 @@
+<template>
+
+    <lightning-card variant="Narrow" title={objectLabel} icon-name={iconUrl} class="slds-box slds-box_x-small">
+        <div slot="actions" class="slds-grid slds-grid_align-end">
+            <lightning-button label="View Record" variant="brand" onclick={handeOnRecordClick}></lightning-button>
+        </div>
+        <div class="slds-p-around_medium">
+            <template for:each={displayFields} for:item="data">
+                <div class="slds-p-around_x-small" key={data.fieldLabel}>
+                    <template if:true={data.parentID}>
+                        <p><strong>{data.fieldLabel}: </strong> <a href={data.parentURL} > {data.fieldValue}</a></p>
+                    </template>
+                    <template if:false={data.parentID}>
+                        <p><strong>{data.fieldLabel}: </strong> {data.fieldValue}</p>
+                    </template>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+
+</template>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Physician Briefing is an Agentforce topic designed to support sales representatives by providing a concise, context‑aware briefing about a physician prior to, or during, a sales meeting. The topic consolidates relevant commercial, engagement, and relationship data so the sales rep can walk into the meeting well‑prepared and aligned to the physician’s interests and history.
+Prepare effectively for physician meetings
+Personalize conversations
+Maximize meeting value by focusing on relevant products, past interactions, and open opportunities</description>
+    <developerName>Physician_Referral_History_Briefing</developerName>
+    <invocationTarget>Physician_Referral_History_Briefing</invocationTarget>
+    <invocationTargetType>generatePromptResponse</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Physician_Referral_History_Briefing</localDeveloperName>
+    <masterLabel>Physician Referral History Briefing</masterLabel>
+    <progressIndicatorMessage>Gathering info</progressIndicatorMessage>
+</GenAiFunction>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates a task linked to a contact with specified details</description>
+    <developerName>Create_Task_for_Contact_LWC</developerName>
+    <invocationTarget>TaskCreator</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Create_Task_for_Contact_LWC</localDeveloperName>
+    <masterLabel>Create Task for Contact with O/P LWC</masterLabel>
+    <progressIndicatorMessage>Creating Task</progressIndicatorMessage>
+</GenAiFunction>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Retrieves contact with name, account name, and email for the user to decide for which contact he wants to create a succive task/event on</description>
+    <developerName>Get_Contact_Information</developerName>
+    <invocationTarget>ContactInformationRetriever</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Get_Contact_Information</localDeveloperName>
+    <masterLabel>Get Contact Information</masterLabel>
+    <progressIndicatorMessage>finding contacts</progressIndicatorMessage>
+</GenAiFunction>

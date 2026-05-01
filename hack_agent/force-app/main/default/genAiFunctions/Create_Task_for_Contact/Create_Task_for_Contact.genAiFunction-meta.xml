@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates a task linked to a contact with specified details</description>
+    <developerName>Create_Task_for_Contact</developerName>
+    <invocationTarget>TaskCreator</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Create_Task_for_Contact</localDeveloperName>
+    <masterLabel>Create Task for Contact</masterLabel>
+    <progressIndicatorMessage>creating task</progressIndicatorMessage>
+</GenAiFunction>

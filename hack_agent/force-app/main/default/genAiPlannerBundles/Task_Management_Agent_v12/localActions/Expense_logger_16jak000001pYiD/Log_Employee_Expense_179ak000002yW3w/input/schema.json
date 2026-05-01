@@ -1,0 +1,37 @@
+{
+  "required" : [ "expenseAmount" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "accountId" : {
+      "title" : "Account ID",
+      "description" : "ID of the account (if available, takes precedence over Account Name)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "accountName" : {
+      "title" : "Account Name",
+      "description" : "Name of the account to log expense for (used if Account ID not provided)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "expenseAmount" : {
+      "title" : "Expense Amount",
+      "description" : "Amount of the expense",
+      "multipleOf" : 1.0E-34,
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "expenseDescription" : {
+      "title" : "Expense Description",
+      "description" : "Description of the expense",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

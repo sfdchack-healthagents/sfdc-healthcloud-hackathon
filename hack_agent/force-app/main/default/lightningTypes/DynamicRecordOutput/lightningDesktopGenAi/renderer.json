@@ -1,0 +1,9 @@
+{
+  "renderer" : {
+    "componentOverrides" : {
+      "$" : {
+        "definition" : "c/agent_SFX_DynamicAgentOutput"
+      }
+    }
+  }
+}

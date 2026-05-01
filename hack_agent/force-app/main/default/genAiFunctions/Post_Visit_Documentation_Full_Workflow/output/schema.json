@@ -1,0 +1,42 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "isSuccess" : {
+      "title" : "Success",
+      "description" : "TRUE = Visit log created successfully. FALSE = Something went wrong. CHECK THIS FIRST. If FALSE, read Message for error details. Task failures do NOT set this to FALSE (non-critical). NEXT STEP if TRUE: \"Visit logged successfully!\" NEXT STEP if FALSE: Show error message to user.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "message" : {
+      "title" : "Message",
+      "description" : "EXPLANATION: What happened in plain language. READ IF Success=FALSE: Shows what went wrong like \"Account not found: Apollo Hospitals\" or \"Invalid Account ID format\". READ IF Success=TRUE: Informational summary like \"Post visit log created successfully with task\". HOW TO USE: Show to user if there was an error, log for audit if success. EXAMPLES: \"Account ID or Account Name required\", \"Account not found: Apollo\".",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "postVisitLogId" : {
+      "title" : "Post Visit Log ID",
+      "description" : "UNIQUE ID: Salesforce record ID like \"a0a1234567890AB\". WHEN POPULATED: Always present when Success=TRUE, empty when Success=FALSE. HOW TO USE: Share with user so they can view the visit record. FORMAT: Copy and include in response like \"Visit log created: [ID]\". PRIMARY RECORD: This is the main record created.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "taskId" : {
+      "title" : "Task ID",
+      "description" : "UNIQUE ID: Salesforce task record ID like \"00T1234567890AB\". WHEN POPULATED: Only if createTask=TRUE and task created successfully. Empty if task not requested. HOW TO USE: Share with user so they know task was created. FORMAT: \"Follow-up task created: [ID]\". OPTIONAL FIELD: Will be empty if no task was requested.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

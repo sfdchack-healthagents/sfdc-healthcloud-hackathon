@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Sends email to doctor with brochure attachment by searching contact and document names</description>
+    <developerName>Send_Email_with_Brochure</developerName>
+    <invocationTarget>DoctorEmailSender</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Send_Email_with_Brochure</localDeveloperName>
+    <masterLabel>Send Email with Brochure</masterLabel>
+    <progressIndicatorMessage>sending</progressIndicatorMessage>
+</GenAiFunction>

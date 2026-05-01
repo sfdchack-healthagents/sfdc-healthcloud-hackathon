@@ -1,0 +1,90 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "accountId" : {
+      "title" : "Account ID",
+      "description" : "[REQUIRED - USER PROVIDES IMPLICITLY] Users will say things like \"Log visit for Apollo Hospitals\" or \"Document meeting at Manipal\" - they will NOT provide IDs. WHAT TO DO: Extract clinic/hospital name from user message and use Account Name field instead (recommended). ONLY USE THIS if user explicitly says \"Account ID is 001A0000001ABC\" or similar exact 15-18 char format. Either Account ID or Account Name required (Account Name is 99% of the time).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "accountName" : {
+      "title" : "Account Name",
+      "description" : "[REQUIRED - EXTRACT FROM USER MESSAGE] PRIMARY METHOD: Users naturally mention clinic/hospital names like \"I visited Apollo Hospitals today\" or \"Met with Manipal team\". EXTRACT: The clinic/hospital/organization name from user conversation. EXAMPLES: \"Discussed partnership with AIIMS\" → Extract \"AIIMS\", \"Visited Dr. Mehta at Fortis Hospital\" → Extract \"Fortis Hospital\". ⚠️ CRITICAL - PERSON NAMES WILL FAIL: If user only mentions a person name like \"I met with Roopa R\" or \"Visited Dr. Mehta\" (NO hospital name), put that name in Doctor/Provider Contact field INSTEAD, and ask user which clinic they visited. WILL FAIL: \"Roopa R\", \"Dr. Mehta\", \"Dr. Sharma\" (person names). WILL WORK: \"Apollo Hospitals\", \"AIIMS\", \"Fortis Hospital\" (organization names). Either Account Name or Account ID required (this is the most common path).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "createTask" : {
+      "title" : "Create Follow-up Task",
+      "description" : "[AGENT DECISION - NO ASK] Analyze conversation: if user mentions action items (\"call them\", \"schedule meeting\", \"follow up\", \"remind me to send email\"), set TRUE. Otherwise FALSE. IMPORTANT: \"Remind me to send email\" = CREATE TASK (not email action). Smart default: FALSE.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "doctorContact" : {
+      "title" : "Doctor/Provider Contact",
+      "description" : "[OPTIONAL - LOOKUP CONTACT NAME] If user mentions a doctor name, provide it here (e.g., \"Roopa R\", \"Dr. Mehta\", \"Dr. Sharma, Chief of Cardiology\"). SYSTEM VALIDATES: Agent will search for this contact in your Salesforce database. If not found, action fails with \"Contact not found\" - ask user to verify the exact name. FORMAT: Person name only. Leave blank if not mentioned.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "expenseAmount" : {
+      "title" : "Expense Amount",
+      "description" : "[OPTIONAL - ASK IF MENTIONED] If user mentions expenses, ask for total amount. FORMAT: Number only like \"1500\" for 1500 INR. Leave blank if none.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "referralNotes" : {
+      "title" : "Referral Notes",
+      "description" : "[OPTIONAL - ASK IF RELEVANT] If user discusses opportunities or commitments, ask for details. EXAMPLES: \"Interested in oncology pilot\", \"Budget approved Q3\". Leave blank if none.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "taskDescription" : {
+      "title" : "Task Description",
+      "description" : "[OPTIONAL - CAPTURE DETAILS] If user provides more context about the task, include it. Otherwise leave blank. Task works fine with just the Subject.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "taskDueDate" : {
+      "title" : "Task Due Date",
+      "description" : "[OPTIONAL - AUTO-POPULATE] DEFAULT: Use today+3 days automatically (standard 3-day follow-up). ONLY override if user says different date needed (\"need this done by next week\", etc).",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "taskPriority" : {
+      "title" : "Task Priority",
+      "description" : "[OPTIONAL - AUTO-POPULATE] DEFAULT: Always use \"Normal\" (most follow-ups are routine). ONLY use \"High\" if user emphasizes urgency or large opportunity. Never use \"Low\".",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "taskSubject" : {
+      "title" : "Task Subject",
+      "description" : "[REQUIRED IF createTask=TRUE - ASK USER] Only ask if task needed. WRITE: Get specific action from user like \"Call Dr. Patel\", \"Send email to Dr. Patel\", \"Call hospital about pricing\". IMPORTANT: If user says \"remind me to send email\", capture it as a TASK with subject like \"Send email to [contact name]\" - do NOT send email directly. Format: Action verb + recipient/details. DO NOT make up task subjects - use exact user intent.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "visitDate" : {
+      "title" : "Visit Date",
+      "description" : "[OPTIONAL - AUTO-POPULATE] DEFAULT: Use today automatically. ONLY ask user if they mention a past visit date. FORMAT: YYYY-MM-DD if user specifies.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "visitSummary" : {
+      "title" : "Visit Summary",
+      "description" : "[OPTIONAL - ASK IF AVAILABLE] Ask user what was discussed if this is a real visit (1-2 sentences). EXAMPLES: \"Discussed oncology program\", \"Explored cardiology partnership\". If user prefers not to provide details, leave blank - system will auto-generate default.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,56 @@
+{
+  "required" : [ "contactId", "subject" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "accountId" : {
+      "title" : "Account ID",
+      "description" : "ID of the account to link the task to (optional), Contact/Account",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "contactId" : {
+      "title" : "Contact ID",
+      "description" : "ID of the contact to link the task to",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "description" : {
+      "title" : "Description",
+      "description" : "Task description, ,optional -Do not insist user to input this value if user is not providing",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "dueDate" : {
+      "title" : "Due Date",
+      "description" : "Task due date , ,optional -Do not insist user to input this value if user is not providing if not provided default as today",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "priority" : {
+      "title" : "Priority",
+      "description" : "Task priority (High, Normal, Low), optional -Do not insist user to input this value if user is not providing",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "status" : {
+      "title" : "Status",
+      "description" : "Task status (Not Started, In Progress, Completed),optional -Do not insist user to input this value if user is not providing",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "subject" : {
+      "title" : "Subject",
+      "description" : "Task subject, ,optional -Do not insist user to input this value if user is not providing, take a subject that suits the context",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

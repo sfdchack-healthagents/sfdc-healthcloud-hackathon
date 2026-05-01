@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates a Task record from Agentforce agent, queries Contact/Person Account by name</description>
+    <developerName>Create_Task</developerName>
+    <invocationTarget>AgentforceTaskCreator</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Create_Task</localDeveloperName>
+    <masterLabel>Create Task</masterLabel>
+    <progressIndicatorMessage>creating Task</progressIndicatorMessage>
+</GenAiFunction>

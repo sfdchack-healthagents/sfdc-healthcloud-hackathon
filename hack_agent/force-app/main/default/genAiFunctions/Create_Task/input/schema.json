@@ -1,0 +1,56 @@
+{
+  "required" : [ "subject" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "description" : {
+      "title" : "Description",
+      "description" : "Task description/notes",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "dueDate" : {
+      "title" : "Due Date",
+      "description" : "Task due date",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "priority" : {
+      "title" : "Priority",
+      "description" : "High, Normal, or Low",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "relatedToName" : {
+      "title" : "Related To Name",
+      "description" : " Name of Contact or Person Account to link task",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "relatedToType" : {
+      "title" : "Contact/Account",
+      "description" : "Type of record to link task (Contact or Account), based on user input understand its a contact or account ",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "status" : {
+      "title" : "Status",
+      "description" : "Task status (e.g., Open, In Progress)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "subject" : {
+      "title" : "Subject",
+      "description" : "Task subject line",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

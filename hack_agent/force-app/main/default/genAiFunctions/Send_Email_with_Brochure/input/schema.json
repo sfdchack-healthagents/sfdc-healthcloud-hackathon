@@ -1,0 +1,42 @@
+{
+  "required" : [ "brochureName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "brochureName" : {
+      "title" : "Brochure Name",
+      "description" : "Name of brochure document in library (e.g., Treatment Guide, Clinical Trial Info)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "contactId" : {
+      "title" : "Contact ID",
+      "description" : "ID of contact to email (takes precedence over Contact Name) Agent has to produce this",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "contactName" : {
+      "title" : "Contact Name",
+      "description" : "Name of doctor/contact to email (e.g., Dr. Smith, John Doe) - used if Contact ID not provided",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "emailBody" : {
+      "title" : "Email Body",
+      "description" : "Custom email body text",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "emailSubject" : {
+      "title" : "Email Subject",
+      "description" : "Custom email subject line",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

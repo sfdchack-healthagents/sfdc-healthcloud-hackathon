@@ -1,0 +1,49 @@
+{
+  "required" : [ "visitSummary" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "accountId" : {
+      "title" : "Account ID",
+      "description" : "ID of the clinic/hospital (optional)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "doctorContactId" : {
+      "title" : "Doctor Contact ID",
+      "description" : "ID of the doctor/contact (optional)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "expenseAmount" : {
+      "title" : "Expense Amount",
+      "description" : "Total expense amount (optional)",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "referralNotes" : {
+      "title" : "Referral Notes",
+      "description" : "Partnership opportunities or commitments (optional)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "visitDate" : {
+      "title" : "Visit Date",
+      "description" : "Date of visit. Default is today if not provided (optional)",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "visitSummary" : {
+      "title" : "Visit Summary",
+      "description" : "Summary of the visit",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

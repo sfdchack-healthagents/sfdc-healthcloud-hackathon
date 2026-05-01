@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Automate common business tasks and assist users in their flow of work. Agentforce Employee Agent can search knowledge articles and other data sources. Customize it further to meet your employees&apos; business needs.</description>
+    <localTopicLinks>
+        <genAiPluginName>Expense_logger_16jak000001lXcf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>GeneralFAQ_16jak000001lXcf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Log_Visit_Summary_16jak000001lXcf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Send_Email_16jak000001lXcf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Task_Creation_16jak000001lXcf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>ambiguous_question_16jak000001lXcf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>off_topic_16jak000001lXcf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>topic_selector_16jak000001lXcf</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Send_Email_16jak000001lXcf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Send email with Brochure or marketing content to doctors/ clinics</description>
+        <developerName>Send_Email_16jak000001lXcf</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002pgCD</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002pgCD</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Send_Email_with_Brochure_179ak000002pgCD</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Send_Email_with_Brochure_179ak000002pgCD</fullName>
+            <description>Sends email to doctor with brochure attachment by searching contact and document names</description>
+            <developerName>Send_Email_with_Brochure_179ak000002pgCD</developerName>
+            <invocationTarget>DoctorEmailSender</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Send_Email_with_Brochure</localDeveloperName>
+            <masterLabel>Send Email with Brochure</masterLabel>
+            <progressIndicatorMessage>sending</progressIndicatorMessage>
+            <source>Send_Email_with_Brochure</source>
+        </localActions>
+        <localDeveloperName>Send_Email</localDeveloperName>
+        <masterLabel>Send Email</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>Log_Visit_Summary_16jak000001lXcf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Enable sales executives to dictate visit notes directly into the Salesforce mobile app. The agent should &quot;listen,&quot; summarize, and log details automatically.</description>
+        <developerName>Log_Visit_Summary_16jak000001lXcf</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002pgCC</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002pgCC</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Create_Post_Visit_Log_179ak000002pgCC</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Create_Post_Visit_Log_179ak000002pgCC</fullName>
+            <description>Creates a Post Visit Log record with visit summary</description>
+            <developerName>Create_Post_Visit_Log_179ak000002pgCC</developerName>
+            <invocationTarget>VisitLogCreator</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Post_Visit_Log</localDeveloperName>
+            <masterLabel>Create Post Visit Log</masterLabel>
+            <progressIndicatorMessage>creating post visit log</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Log_Visit_Summary</localDeveloperName>
+        <masterLabel>Log Visit Summary</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>Task_Creation_16jak000001lXcf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>The agent reviews natural‑language summaries of meetings, visits, or conversations and detects explicit or implicit follow‑up actions (for example, scheduling meetings, sending materials, or planning outreach). Based on this analysis, the agent creates appropriate follow‑up Tasks in Salesforce and assigns them to the correct owner with relevant due dates, descriptions, and related records.</description>
+        <developerName>Task_Creation_16jak000001lXcf</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002pgCB</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002pgCB</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Create_Task_for_Contact_LWC_179ak000002pgCB</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Get_Contact_Information_179ak000002pgCB</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Create_Task_for_Contact_LWC_179ak000002pgCB</fullName>
+            <description>Creates a task linked to a contact with specified details</description>
+            <developerName>Create_Task_for_Contact_LWC_179ak000002pgCB</developerName>
+            <invocationTarget>TaskCreator</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Task_for_Contact_LWC</localDeveloperName>
+            <masterLabel>Create Task for Contact with O/P LWC</masterLabel>
+            <progressIndicatorMessage>Creating Task</progressIndicatorMessage>
+            <source>Create_Task_for_Contact_LWC</source>
+        </localActions>
+        <localActions>
+            <fullName>Get_Contact_Information_179ak000002pgCB</fullName>
+            <description>Retrieves contact with name, account name, and email for the user to decide for which contact he wants to create a task/event on</description>
+            <developerName>Get_Contact_Information_179ak000002pgCB</developerName>
+            <invocationTarget>ContactInformationRetriever</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Contact_Information</localDeveloperName>
+            <masterLabel>Get Contact Information</masterLabel>
+            <progressIndicatorMessage>finding contacts</progressIndicatorMessage>
+            <source>Get_Contact_Information</source>
+        </localActions>
+        <localDeveloperName>Task_Creation</localDeveloperName>
+        <masterLabel>Task Creation</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>GeneralFAQ_16jak000001lXcf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic is for helping answer customer&apos;s questions by searching through the knowledge articles and providing information from those articles. The questions can be about the company and its products, policies or business procedures</description>
+        <developerName>GeneralFAQ_16jak000001lXcf</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002pgCA</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002pgCA</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>AnswerQuestionsWithKnowledge_179ak000002pgCA</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>AnswerQuestionsWithKnowledge_179ak000002pgCA</fullName>
+            <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: &apos;What is your return policy?&apos; &apos;How do I fix an issue?&apos; or &apos;What features does a product have?&apos;</description>
+            <developerName>AnswerQuestionsWithKnowledge_179ak000002pgCA</developerName>
+            <invocationTarget>streamKnowledgeSearch</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+            <masterLabel>Answer Questions with Knowledge</masterLabel>
+            <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+            <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+        </localActions>
+        <localDeveloperName>GeneralFAQ</localDeveloperName>
+        <masterLabel>General FAQ</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>off_topic_16jak000001lXcf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request goes off-topic</description>
+        <developerName>off_topic_16jak000001lXcf</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002pgCG</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002pgCG</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>off_topic</localDeveloperName>
+        <masterLabel>Off Topic</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>Expense_logger_16jak000001lXcf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Streamline administrative overhead by allowing reps to log travel or meeting expenses through simple conversational prompts.</description>
+        <developerName>Expense_logger_16jak000001lXcf</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002pgCF</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002pgCF</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Create_Expense_from_Service_Agent_179ak000002pgCF</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Create_Expense_from_Service_Agent_179ak000002pgCF</fullName>
+            <description>Creates an expense record from service agent input</description>
+            <developerName>Create_Expense_from_Service_Agent_179ak000002pgCF</developerName>
+            <invocationTarget>ServiceAgentExpenseCreator</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Expense_from_Service_Agent</localDeveloperName>
+            <masterLabel>Create Expense from Service Agent</masterLabel>
+            <progressIndicatorMessage>logging Expense</progressIndicatorMessage>
+            <source>Create_Expense_from_Service_Agent</source>
+        </localActions>
+        <localDeveloperName>Expense_logger</localDeveloperName>
+        <masterLabel>Expense logger</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>topic_selector_16jak000001lXcf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and determine the appropriate topic based on user input</description>
+        <developerName>topic_selector_16jak000001lXcf</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002pgCE</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002pgCE</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>PersonalizeContext_179ak000002pgCE</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>PersonalizeContext_179ak000002pgCE</fullName>
+            <description>Improve agent decisioning with real-time access to summarized, personalization data.</description>
+            <developerName>PersonalizeContext_179ak000002pgCE</developerName>
+            <invocationTarget>createContextPersonalization</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>PersonalizeContext</localDeveloperName>
+            <masterLabel>Personalization: Get Context</masterLabel>
+            <progressIndicatorMessage>Creating a personalized context for you...</progressIndicatorMessage>
+            <source>Personalization__PersonalizeContext</source>
+        </localActions>
+        <localDeveloperName>topic_selector</localDeveloperName>
+        <masterLabel>Topic Selector</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>ambiguous_question_16jak000001lXcf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request is too ambiguous</description>
+        <developerName>ambiguous_question_16jak000001lXcf</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.</description>
+            <developerName>instruction0_179ak000002pgC9</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179ak000002pgC9</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>ambiguous_question</localDeveloperName>
+        <masterLabel>Ambiguous Question</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Task Management Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>
